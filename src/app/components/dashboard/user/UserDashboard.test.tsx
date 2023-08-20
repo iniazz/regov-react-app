@@ -5,7 +5,13 @@ import UserDashboard from './UserDashboard';
 
 describe('<UserDashboard />', () => {
   test('it should mount', () => {
-    render(<UserDashboard />);
+
+    const mockUserData = {
+      name: 'John Doe',
+      email: 'john@example.com',
+    };
+
+    render(<UserDashboard userData={mockUserData} orders={[]} />);
     
     const userDashboard = screen.getByTestId('UserDashboard');
 

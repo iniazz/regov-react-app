@@ -1,29 +1,45 @@
-import React, { FC, useState } from 'react';
+import React, { useState } from 'react';
 import { EKycWrapper } from './Ekyc.styled';
+import { useNavigate } from 'react-router-dom';
+// import FaceCaptureComponent from './FaceCaptureComponent';
+// import CredentialUploadComponent from './CredentialUploadComponent';
 
-interface EKycProps {}
+const EKycPage = () => {
+  const [faceCaptured, setFaceCaptured] = useState(false);
+  const [credentialsUploaded, setCredentialsUploaded] = useState(false);
+  const navigate = useNavigate()
 
-const EKycPage: FC<EKycProps> = () => {
-   const [faceCaptured, setFaceCaptured] = useState(false);
-   const [credentialsUploaded, setCredentialsUploaded] = useState(false);
+  const handleFaceCapture = () => {
+    setFaceCaptured(true);
+  };
 
-   return (
-      <EKycWrapper data-testid="EKyc">
-    EKyc Component
-    <div>
+  const handleCredentialsUpload = () => {
+    setCredentialsUploaded(true);
+  };
+
+  const handleSubmitEKyc = () => {
+    navigate('/user-dashboard');
+  };
+
+  return (
+    <EKycWrapper data-testid="EKyc">
       <h2>eKYC Page</h2>
       <div>
         <h3>Face Capture</h3>
-        {faceCaptured ? <p>Face captured successfully</p> : <button>Capture Face</button>}
+        {faceCaptured ? <p>Face captured successfully</p> : <button onClick={handleFaceCapture}>Capture Face</button>}
       </div>
       <div>
         <h3>Credentials Upload</h3>
-        {credentialsUploaded ? <p>Credentials uploaded successfully</p> : <button>Upload Credentials</button>}
+        {credentialsUploaded ? (
+          <p>Credentials uploaded successfully</p>
+        ) : (
+          <button onClick={handleCredentialsUpload}>Upload Credentials</button>
+        )}
       </div>
-      <button>Submit eKYC</button>
-    </div>
- </EKycWrapper>
-   )
+      {faceCaptured && credentialsUploaded && (
+      <button onClick={handleSubmitEKyc}>Submit eKYC</button>)}
+    </EKycWrapper>
+  );
 };
 
 export default EKycPage;

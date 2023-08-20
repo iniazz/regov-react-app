@@ -2,23 +2,26 @@ import React, { FC, useState } from 'react';
 import { LoginFormWrapper } from './LoginForm.styled';
 import { connect, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
-// interface LoginFormProps {}
-
-// const LoginForm: FC<LoginFormProps> = () => (
-//  <LoginFormWrapper data-testid="LoginForm">
-//     LoginForm Component
-//  </LoginFormWrapper>
-// );
+import {
+  MDBContainer,
+  MDBTabs,
+  MDBTabsItem,
+  MDBTabsLink,
+  MDBTabsContent,
+  MDBTabsPane,
+  MDBBtn,
+  MDBIcon,
+  MDBInput,
+  MDBCheckbox
+}
+from 'mdb-react-ui-kit';
 
 interface AuthState {
   isAuthenticated: boolean;
-  // Add other properties from your auth state
 }
 
 interface RootState {
   auth: AuthState;
-  // Add other reducers' states if needed
 }
 
 interface LoginFormState {
@@ -27,7 +30,7 @@ interface LoginFormState {
 }
 
 interface LoginFormProps {
-  onRedirect: () => void; // Add this prop
+  onRedirect: () => void;
 }
 
 const LoginForm: FC<LoginFormProps> = ({ onRedirect }) => {
@@ -41,17 +44,13 @@ const LoginForm: FC<LoginFormProps> = ({ onRedirect }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(formData)
-    // Handle form submission logic
     const registeredUser = JSON.parse(sessionStorage.getItem('registeredUser') || 'null');
     console.log(registeredUser)
     if (registeredUser && formData.email === registeredUser.email && formData.password === registeredUser.password) {
-      // Perform successful login actions, such as updating the auth state, redirecting, etc.
+      
       console.log('Login successful');
       navigate('/user-dashboard')
-      // You can dispatch an action to update the auth state in Redux if needed
     } else {
-      // Handle login failure, display error message, etc.
       console.log('Login failed');
     }
     onRedirect();
@@ -68,16 +67,10 @@ const LoginForm: FC<LoginFormProps> = ({ onRedirect }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Login Form</h2>
-      <div>
-        <label>Email:</label>
-        <input type="email" name="email" value={formData.email} onChange={handleChange} />
-      </div>
-      <div>
-        <label>Password:</label>
-        <input type="password" name="password" value={formData.password} onChange={handleChange} />
-      </div>
-      <button type="submit">Login</button>
+      <MDBInput wrapperClass='mb-4' label='Email' id='email' type="email" name="email" value={formData.email} onChange={handleChange}/>
+      <MDBInput wrapperClass='mb-4' label='Password' id='password' type="password" name="password" value={formData.password} onChange={handleChange}/>
+
+      <MDBBtn className="mb-4 w-100" type="submit">Login</MDBBtn>
     </form>
   );
 };

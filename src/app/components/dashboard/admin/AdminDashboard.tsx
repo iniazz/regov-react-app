@@ -6,7 +6,6 @@ interface AdminDashboardProps {}
 const clothApplications = [
    { id: 1, user: 'User A', type: 'Shirt', status: 'Pending' },
    { id: 2, user: 'User B', type: 'Dress', status: 'Approved' },
-   // ... more applications
  ];
 
 const AdminDashboard: FC<AdminDashboardProps> = () => (

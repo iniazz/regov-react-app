@@ -9,7 +9,7 @@ import VerificationPage from './app/components/authentication/verification-page/
 import UserDashboard from './app/components/dashboard/user/UserDashboard';
 import AdminDashboard from './app/components/dashboard/admin/AdminDashboard';
 import EKycPage from './app/components/e-kyc/Ekyc';
-import OrderPage from './app/components/order/Order';
+import OrderPage from './app/components/order/order-page/Order';
 
 import {
   MDBContainer,
@@ -29,6 +29,8 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const registeredUser = JSON.parse(sessionStorage.getItem('registeredUser') || 'null');
+
   const [activeTab, setActiveTab] = useState('register');
   const [showTabs, setShowTabs] = useState(true);
 
@@ -104,7 +106,7 @@ function App() {
             throw new Error('Function not implemented.');
           } } />} />
               <Route path="/verification-route/:token" element={<VerificationPage />} />
-              <Route path="/user-dashboard" element={<UserDashboard />} />
+              <Route path="/user-dashboard" element={<UserDashboard userData={registeredUser} orders={[]} />} />
               <Route path="/ekyc" element={<EKycPage />} />
               <Route path="/cloth-order" element={<OrderPage />} />
               <Route path="/admin-dashboard" element={<AdminDashboard />} />

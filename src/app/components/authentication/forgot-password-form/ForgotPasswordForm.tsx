@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react';
 import { ForgotPasswordFormWrapper } from './ForgotPasswordForm.styled';
+import { setAuthenticated } from './../../../utils/authUtils';
 import {
   MDBContainer,
   MDBTabs,

@@ -4,6 +4,7 @@ import ClothingTypeSelector from './../clothing-selector/ClothingTypeSelector';
 import MeasurementForm from './../measurement-form/MeasurementForm';
 import UserDashboard from './../../dashboard/user/UserDashboard'; 
 import { useNavigate } from 'react-router-dom';
+import { MDBBtn } from 'mdb-react-ui-kit';
 
 interface Order {
   clothingType: string;
@@ -35,14 +36,14 @@ const PlaceNewOrder = () => {
       clothingType: selectedClothingType,
       measurements: measurementData,
     };
-
+  
     const existingOrdersJSON = localStorage.getItem('submittedOrders');
     const existingOrders = existingOrdersJSON ? JSON.parse(existingOrdersJSON) : [];
     const updatedOrders = [...existingOrders, newOrder];
 
     localStorage.setItem('submittedOrders', JSON.stringify(updatedOrders));
 
-    setSubmittedOrders([...submittedOrders, newOrder]);
+    setSubmittedOrders(updatedOrders);
 
     setSelectedClothingType('');
     setMeasurementData({});
@@ -70,10 +71,10 @@ const PlaceNewOrder = () => {
           ))}
           </ul>
           <p>Calculated Cost: $100</p>
+          {measurementData && <MDBBtn onClick={handleConfirmOrder}>Confirm Order</MDBBtn>}
         </div>
       )}
-      {measurementData && <button onClick={handleConfirmOrder}>Confirm Order</button>}
-      {submittedOrders.length > 0 && <UserDashboard orders={submittedOrders} userData={registeredUser} />}
+      {orderConfirmed && <UserDashboard orders={submittedOrders} userData={registeredUser} />}
     </OrderWrapper>
   );
 };

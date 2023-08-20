@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { isAuthenticated } from './app/utils/authUtils';
 import store from './store';
 import RegistrationForm from './app/components/authentication/registration-form/RegistrationForm';
 import LoginForm from './app/components/authentication/login-form/LoginForm';
@@ -30,7 +31,7 @@ import './App.css';
 
 function App() {
   const registeredUser = JSON.parse(sessionStorage.getItem('registeredUser') || 'null');
-
+  const [submittedOrders, setSubmittedOrders] = useState([]);
   const [activeTab, setActiveTab] = useState('register');
   const [showTabs, setShowTabs] = useState(true);
 
@@ -47,6 +48,7 @@ function App() {
       {/* <div className="App">
         <header className="App-header"> */}
           <Router>
+            {!isAuthenticated() && (
             <MDBContainer>
             {showTabs && (
               <MDBTabs justify className="mb-3">
@@ -81,19 +83,7 @@ function App() {
                 </MDBTabsPane>
               </MDBTabsContent>
             </MDBContainer>
-            {/* <nav>
-              <ul>
-                <li>
-                  <Link to="/register">Register</Link>
-                </li>
-                <li>
-                  <Link to="/login">Login</Link>
-                </li>
-                <li>
-                  <Link to="/forgot-password">Forgot Password</Link>
-                </li>
-              </ul>
-            </nav> */}
+          )}
 
             <Routes>
               <Route path="/register" element={<RegistrationForm onRedirect={function (): void {

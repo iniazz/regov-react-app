@@ -19,12 +19,13 @@ interface Order {
 }
 
 const UserDashboard: FC<UserDashboardProps> = ({ userData, orders }) => (
+  
  <UserDashboardWrapper data-testid="UserDashboard">
     <div>
       <h2>Welcome to Your Dashboard</h2>
-      <p>Here's your user-specific information:</p>
+      <p>Here's your information:</p>
       <div>
-        <h3>User Information</h3>
+        <h3>User Profile</h3>
         <p>Name: {userData.name}</p>
         <p>Email: {userData.email}</p>
       </div>
@@ -36,6 +37,7 @@ const UserDashboard: FC<UserDashboardProps> = ({ userData, orders }) => (
               <th>Order ID</th>
               <th>Clothing Type</th>
               <th>Measurements</th>
+              <th>Status</th>
             </tr>
           </MDBTableHead>
           <MDBTableBody>
@@ -52,6 +54,7 @@ const UserDashboard: FC<UserDashboardProps> = ({ userData, orders }) => (
                     ))}
                   </ul>
                 </td>
+                <td>Pending</td>
               </tr>
             ))}
           </MDBTableBody>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { MDBBtn } from 'mdb-react-ui-kit';
 
 interface ClothingTypeSelectorProps {
   onSelect: (clothingType: string) => void;
@@ -13,7 +14,7 @@ const ClothingTypeSelector: React.FC<ClothingTypeSelectorProps> = ({ onSelect })
       <ul>
         {clothingTypes.map((type) => (
           <li key={type}>
-            <button onClick={() => onSelect(type)}>{type}</button>
+            <MDBBtn onClick={() => onSelect(type)}>{type}</MDBBtn>
           </li>
         ))}
       </ul>

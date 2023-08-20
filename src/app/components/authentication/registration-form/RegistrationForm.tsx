@@ -3,6 +3,7 @@ import { RegistrationFormWrapper } from './RegistrationForm.styled';
 import { connect } from 'react-redux';
 import { registerUser } from '../../../actions/authActions';
 import { useNavigate } from 'react-router-dom';
+import { setAuthenticated } from './../../../utils/authUtils';
 import {
   MDBContainer,
   MDBTabs,
@@ -37,7 +38,7 @@ const RegistrationForm: FC<RegistrationFormProps> = ({ onRedirect }) => {
     registerUser(formData);
     const userWithVerification = { ...formData, isVerified: false };
     sessionStorage.setItem('registeredUser', JSON.stringify(userWithVerification));
-    
+    setAuthenticated(true); 
     navigate('/verification-route');
     onRedirect();
   };

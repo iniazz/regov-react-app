@@ -2,6 +2,7 @@ import React, { FC, useState } from 'react';
 import { LoginFormWrapper } from './LoginForm.styled';
 import { connect, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { setAuthenticated } from './../../../utils/authUtils';
 import {
   MDBContainer,
   MDBTabs,
@@ -49,6 +50,7 @@ const LoginForm: FC<LoginFormProps> = ({ onRedirect }) => {
     if (registeredUser && formData.email === registeredUser.email && formData.password === registeredUser.password) {
       
       console.log('Login successful');
+      setAuthenticated(true); 
       navigate('/user-dashboard')
     } else {
       console.log('Login failed');

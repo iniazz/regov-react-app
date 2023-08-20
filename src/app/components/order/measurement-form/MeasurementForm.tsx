@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { MDBBtn } from 'mdb-react-ui-kit';
 
 interface MeasurementFormProps {
   clothingType: string;
@@ -24,7 +25,7 @@ const MeasurementForm: React.FC<MeasurementFormProps> = ({ clothingType, onSubmi
       <form onSubmit={handleSubmit}>
         <label>Chest:</label>
         <input type="text" name="chest" value={measurementValues.chest || ''} onChange={handleInputChange} />
-        <button type="submit">Submit Measurements</button>
+        <MDBBtn type="submit">Submit Measurements</MDBBtn>
       </form>
     </div>
   );

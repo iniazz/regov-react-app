@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { UserDashboardWrapper } from './UserDashboard.styled';
 import { Link } from 'react-router-dom';
+import { MDBTable, MDBTableHead, MDBTableBody, MDBBtn } from 'mdb-react-ui-kit';
 
 interface UserDashboardProps {
   userData: UserData;
@@ -29,15 +30,15 @@ const UserDashboard: FC<UserDashboardProps> = ({ userData, orders }) => (
       </div>
       <div>
         <h3>Orders</h3>
-        <table>
-          <thead>
+        <MDBTable>
+          <MDBTableHead>
             <tr>
               <th>Order ID</th>
               <th>Clothing Type</th>
               <th>Measurements</th>
             </tr>
-          </thead>
-          <tbody>
+          </MDBTableHead>
+          <MDBTableBody>
             {orders.map((order, index) => (
               <tr key={index}>
                 <td>{index + 1}</td>
@@ -53,11 +54,17 @@ const UserDashboard: FC<UserDashboardProps> = ({ userData, orders }) => (
                 </td>
               </tr>
             ))}
-          </tbody>
-        </table>
+          </MDBTableBody>
+        </MDBTable>
       </div>
-      <Link to="/ekyc">Complete eKYC</Link>
-      <Link to="/cloth-order">Place a New Order</Link>
+      <div className="d-grid gap-2 d-md-block">
+        <MDBBtn tag={Link} to="/ekyc" color="primary" className="mb-2 me-2">
+          Complete eKYC
+        </MDBBtn>
+        <MDBBtn tag={Link} to="/cloth-order" color="primary" className="mb-2">
+          Place a New Order
+        </MDBBtn>
+      </div>
     </div>
  </UserDashboardWrapper>
 );

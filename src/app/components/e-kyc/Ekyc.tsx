@@ -3,6 +3,7 @@ import { EKycWrapper } from './Ekyc.styled';
 import { useNavigate } from 'react-router-dom';
 // import FaceCaptureComponent from './FaceCaptureComponent';
 // import CredentialUploadComponent from './CredentialUploadComponent';
+import { MDBBtn } from 'mdb-react-ui-kit';
 
 const EKycPage = () => {
   const [faceCaptured, setFaceCaptured] = useState(false);
@@ -26,18 +27,28 @@ const EKycPage = () => {
       <h2>eKYC Page</h2>
       <div>
         <h3>Face Capture</h3>
-        {faceCaptured ? <p>Face captured successfully</p> : <button onClick={handleFaceCapture}>Capture Face</button>}
+        {faceCaptured ? <p>Face captured successfully</p> :
+          <MDBBtn onClick={handleFaceCapture} color="primary" className="mb-2 me-2">
+          Capture Face
+          </MDBBtn>
+        }
       </div>
       <div>
         <h3>Credentials Upload</h3>
         {credentialsUploaded ? (
           <p>Credentials uploaded successfully</p>
         ) : (
-          <button onClick={handleCredentialsUpload}>Upload Credentials</button>
+          <MDBBtn onClick={handleCredentialsUpload} color="primary" className="mb-2 me-2">
+            Capture Face
+          </MDBBtn>
         )}
       </div>
       {faceCaptured && credentialsUploaded && (
-      <button onClick={handleSubmitEKyc}>Submit eKYC</button>)}
+        <MDBBtn onClick={handleSubmitEKyc} color="primary" className="mb-2 me-2">
+        Submit eKYC
+        </MDBBtn>
+      )}
+      
     </EKycWrapper>
   );
 };
